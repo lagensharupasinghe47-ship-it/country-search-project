@@ -1,0 +1,9 @@
+.abc {
+    color: rgb(85, 85, 243);
+}
+
+.gif-box {
+    width: 100%;
+    height: 100vh;
+    background-image: url(asset/img/rain.gif);
+}

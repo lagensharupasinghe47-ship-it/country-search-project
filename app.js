@@ -1,12 +1,24 @@
-console.log("Hiii");
+
 
 let countryName = document.getElementById("txtName").value;
 
 function search() {
 
-    fetch("https://restcountries.com/v3.1/name/" + countryName)
+    fetch("http://api.weatherapi.com/v1/current.json?key=d9a23dbaf6e94aa791290458251211&q="+txtName.value)
         .then(res => res.json())
         .then(data => {
+           
+            document.getElementById("txtName").innerHTML = `
+    <h1>Location: ${data.location.name}</h1>
+    <h1>Country Name: ${data.location.country}</h1>
+    <h2>Temperature: ${data.current.temp_c} °C</h2>     
+`
+      
+
+    fetch("https://restcountries.com/v3.1/name/"+data.location.country)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
 
             document.getElementById("country").innerHTML = `
     <h1>Country Name: ${data[0].name.common}</h1>
@@ -21,4 +33,6 @@ function search() {
     `
         })
     data = null;
+})
 }
+
